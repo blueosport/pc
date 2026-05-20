@@ -71,7 +71,7 @@ exit       — close terminal
 1. Push this repo to GitHub
 2. Go to **Settings → Pages**
 3. Set the source to the `main` branch, root `/`
-4. Your OS will be live at `https://<username>.github.io/<repo>/`
+4. Your OS will be live at [https://blueosport.github.io/PC/]
 
 ## Technologies
 
