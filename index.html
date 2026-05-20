@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en" class="accent-cyan">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BlueByte OS</title>
+  <link rel="stylesheet" href="assets/style.css" />
+</head>
+<body>
+
+<!-- ===================== DESKTOP ===================== -->
+<div id="desktop" class="wallpaper-mesh">
+
+  <!-- Notify badge top-right -->
+  <div class="notify-badge" style="position:fixed;top:8px;right:12px;z-index:400;">
+    <span class="spark">✦</span>
+    <span>VIRTUAL_MACHINE_ONLINE</span>
+    <span style="color:#334155">•</span>
+    <span style="color:var(--accent);cursor:pointer;font-weight:700;" onclick="openShortcutGuide()">[ALT+H]</span>
+  </div>
+
+  <!-- Desktop icons -->
+  <div id="desktop-area">
+    <div style="display:flex;flex-direction:column;gap:10px;padding:10px;">
+      <div class="desk-icon" onclick="openApp('terminal')" title="Open Terminal (Alt+T)">
+        <div class="icon-box" style="color:#22d3ee;">⌨</div>
+        <span class="icon-label">Terminal</span>
+      </div>
+      <div class="desk-icon" onclick="openApp('files')" title="Open File Manager (Alt+F)">
+        <div class="icon-box" style="color:#60a5fa;">📁</div>
+        <span class="icon-label">Files</span>
+      </div>
+      <div class="desk-icon" onclick="openApp('settings')" title="Open Settings (Alt+S)">
+        <div class="icon-box" style="color:#94a3b8;">⚙</div>
+        <span class="icon-label">Settings</span>
+      </div>
+      <div class="desk-icon" onclick="openApp('about')" title="About BlueByte OS">
+        <div class="icon-box" style="color:#a78bfa;">ℹ</div>
+        <span class="icon-label">About</span>
+      </div>
+      <div class="desk-icon" onclick="openApp('voidbrowser')" title="Open Void Browser (Alt+B)">
+        <div class="icon-box" style="color:#818cf8;">🌐</div>
+        <span class="icon-label">Void Browser</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Taskbar -->
+  <div id="taskbar">
+    <button id="start-btn" onclick="toggleStartMenu(event)">
+      <div class="logo-bars">
+        <span></span><span></span><span></span>
+      </div>
+      <span style="font-size:11px;font-family:monospace;">Start</span>
+    </button>
+
+    <div class="taskbar-sep"></div>
+
+    <!-- Running app indicators -->
+    <div id="taskbar-apps" style="display:flex;gap:4px;align-items:center;"></div>
+
+    <!-- Right side -->
+    <div class="taskbar-right">
+      <button onclick="openShortcutGuide()" title="Keyboard Shortcuts">⌨ Shortcuts (?)</button>
+      <div class="taskbar-sep"></div>
+      <div style="display:flex;align-items:center;gap:8px;color:#475569;font-size:12px;">
+        <span title="Network">📶</span>
+        <span title="Volume">🔊</span>
+      </div>
+      <div class="taskbar-sep"></div>
+      <div id="clock"><span>🕐</span><span id="clock-time">00:00:00</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== START MENU ===================== -->
+<div id="start-menu" onclick="event.stopPropagation()">
+  <div id="start-sidebar"><div class="dot"></div></div>
+  <div id="start-body">
+    <div class="section-label">AERO UTILITIES</div>
+    <div style="display:flex;flex-direction:column;gap:2px;">
+      <div class="start-item" onclick="openApp('terminal');closeStartMenu()">
+        <span class="si-icon">⌨</span>Terminal
+      </div>
+      <div class="start-item" onclick="openApp('files');closeStartMenu()">
+        <span class="si-icon">📁</span>File Manager
+      </div>
+      <div class="start-item" onclick="openApp('settings');closeStartMenu()">
+        <span class="si-icon">⚙</span>Settings
+      </div>
+      <div class="start-item" onclick="openApp('about');closeStartMenu()">
+        <span class="si-icon">ℹ</span>About
+      </div>
+      <div class="start-item" onclick="openApp('voidbrowser');closeStartMenu()">
+        <span class="si-icon">🌐</span>Void Browser
+      </div>
+    </div>
+    <div id="start-user">
+      <div class="avatar">OP</div>
+      <div class="user-info">
+        <div class="name">Terminal Controller</div>
+        <div class="role">guest_access_token</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== SHORTCUT GUIDE ===================== -->
+<div id="shortcut-guide" onclick="closeShortcutGuide()">
+  <div id="sg-box" onclick="event.stopPropagation()">
+    <h2>⌨ Keyboard Shortcuts</h2>
+    <div class="sg-section" style="margin-bottom:14px;">
+      <h3>Apps</h3>
+      <div class="sg-row"><span>Open Terminal</span><span class="key">Alt + T</span></div>
+      <div class="sg-row"><span>Open File Manager</span><span class="key">Alt + F</span></div>
+      <div class="sg-row"><span>Open Settings</span><span class="key">Alt + S</span></div>
+      <div class="sg-row"><span>Open Void Browser</span><span class="key">Alt + B</span></div>
+      <div class="sg-row"><span>Toggle Start Menu</span><span class="key">Alt + W</span></div>
+      <div class="sg-row"><span>Toggle Shortcuts</span><span class="key">Alt + H / ?</span></div>
+    </div>
+    <div class="sg-section" style="margin-bottom:14px;">
+      <h3>Void Browser</h3>
+      <div class="sg-row"><span>Open / focus browser</span><span class="key">Alt + B</span></div>
+      <div class="sg-row"><span>Open engine chooser</span><span class="key">Alt + B (when open)</span></div>
+      <div class="sg-row"><span>Select Brave Search</span><span class="key">1</span></div>
+      <div class="sg-row"><span>Select DuckDuckGo</span><span class="key">2</span></div>
+      <div class="sg-row"><span>Select Yahoo Search</span><span class="key">3</span></div>
+      <div class="sg-row"><span>Close engine chooser</span><span class="key">Esc</span></div>
+    </div>
+    <div class="sg-section" style="margin-bottom:14px;">
+      <h3>Window</h3>
+      <div class="sg-row"><span>Close focused window</span><span class="key">Alt + C</span></div>
+      <div class="sg-row"><span>Minimize focused</span><span class="key">Alt + M</span></div>
+      <div class="sg-row"><span>Maximize/Restore</span><span class="key">Alt + X</span></div>
+    </div>
+    <div class="sg-section">
+      <h3>Lock Screen</h3>
+      <div class="sg-row"><span>Lock / Unlock</span><span class="key">Enter / Space</span></div>
+    </div>
+    <button class="sg-close" onclick="closeShortcutGuide()">Close Guide</button>
+  </div>
+</div>
+
+<!-- ===================== LOCK SCREEN ===================== -->
+<div id="lock-screen">
+  <div class="lock-bg-grid"></div>
+  <div class="lock-glow-1"></div>
+  <div class="lock-glow-2"></div>
+  <button id="lock-enter-btn" onclick="unlock()">Enter</button>
+  <div id="lock-timer">Idle: 0m 00s</div>
+  <div id="lock-clock">
+    <div class="time" id="lock-time">12:00 PM</div>
+    <div class="date" id="lock-date">Wednesday, May 20</div>
+  </div>
+</div>
+
+<!-- ===================== WINDOW CONTAINER ===================== -->
+<div id="win-container" style="position:fixed;inset:0;bottom:44px;pointer-events:none;z-index:200;"></div>
+
+<script src="assets/os.js"></script>
+</body>
+</html>
